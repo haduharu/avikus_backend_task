@@ -63,8 +63,3 @@ async def delete_item(id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="id not exist")
     else:
         return await crud.delete_item(db, id)
-
-# # 지워야하는 부분 - test 확인용
-@app.get('/item/all')
-async def get_all_item(db: AsyncSession = Depends(get_db)):
-    return await crud.get_item(db)

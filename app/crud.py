@@ -48,15 +48,3 @@ async def delete_item(db: AsyncSession, id: int):
     await db.commit()
 
     return {"message": "Item deleted successfully"}
-
-async def error_message(message):
-    return {"error": message}
-
-# 확인용
-async def get_item(db: AsyncSession):
-    async with db.begin():
-        result = await db.execute(select(models.Item))
-        items = result.scalars().all()
-        if not items:
-            raise HTTPException(status_code=404, detail="not exist")
-    return items
